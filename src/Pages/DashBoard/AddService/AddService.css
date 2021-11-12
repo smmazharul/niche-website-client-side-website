@@ -1,0 +1,29 @@
+.add-seervice form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    
+   }
+   .addSeervice  {
+        width: 60%;
+       margin-bottom: 10px;
+       background: rgb(209, 209, 209);
+       color: tomato;
+       border-radius: 6px;
+       border: 2px solid gray;
+       
+   }
+   .add-seervice form button {
+      
+       color: rgb(247, 202, 3);
+       
+       background: orange;
+   }
+   .add-seervice form input::placeholder {
+       color: rgb(12, 5, 43);
+   }
+   .add-seervice form textarea::placeholder {
+       color: rgb(12, 5, 43);
+   } 
