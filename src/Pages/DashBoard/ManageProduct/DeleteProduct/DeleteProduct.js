@@ -1,14 +1,13 @@
 import{ useEffect, useState }from 'react';
 // import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Service from '../Service/Service'
+
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/material';
 
 import Typography from '@mui/material/Typography';
-
-
-const Services = () => {
+import DeleteProducts from './DeleteProducts';
+const DeleteProduct = () => {
     const [services, setServices] = useState([])
     useEffect(() => {
         fetch('http://localhost:5000/services')
@@ -19,27 +18,30 @@ const Services = () => {
         })
     },[])
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <div>
+            <Box sx={{ flexGrow: 1 }}>
             <Container sx={{mt:4}} >
                 <Typography variant="h6" component="div" color="#00e5ff"  >
-                    OUR SERVICES
+                    OUR PRODUCT
                  </Typography >
                 <Typography variant="h4" component="div"  sx={{mt:2,mb:8, fontWeight:'500'}}>
-                    Services We Provide
+                   Delete Our Product
                  </Typography>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                   
                     {
-                        services.map(service => <Service
+                        services.map(service => <DeleteProducts
                             key={service._id}
                             service={service}
-                        ></Service>)
+                            setServices={setServices}
+                        ></DeleteProducts>)
                     }
                 </Grid>
                 
             </Container>
          </Box>
+        </div>
     );
 };
 
-export default Services;
+export default DeleteProduct;

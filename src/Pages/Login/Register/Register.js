@@ -1,5 +1,4 @@
 import { Button, LinearProgress, Container, Grid, TextField, Typography, Alert } from '@mui/material';
-import { style } from '@mui/system';
 import React, { useState } from 'react';
 import { NavLink,useHistory } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
@@ -93,7 +92,7 @@ const Register = () => {
 
                 </Grid>
                 <Grid item xs={12} md={6} >
-                    <img src={loginImage} style={{ width: '100%', borderRadius:'15px'}} />
+                    <img src={loginImage} style={{ width: '100%', borderRadius:'15px'}} alt='resgiter' />
                     
                 </Grid>
                 

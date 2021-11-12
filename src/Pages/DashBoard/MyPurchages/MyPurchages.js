@@ -11,15 +11,15 @@ const MyPurchages = () => {
     const {user}=useAuth()
     const [myPurchages, setMyPurchages] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/mypurchages?email=${user.email}`)
-            .then(res => res.json())
-        .then(data=>setMyPurchages(data))
+      fetch(`http://localhost:5000/mypurchages?email=${user.email}`)
+        .then(res => res.json())
+        .then(data => setMyPurchages(data))
     },[])
     return (
         <div>
             <h2>Purchage Items {myPurchages.length}</h2>
-            
-            <TableContainer component={Paper} >
+        
+        <TableContainer component={Paper} >
       <Table  aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -32,19 +32,19 @@ const MyPurchages = () => {
           </TableRow>
         </TableHead>
         <TableBody >
-          {myPurchages.map((row) => (
+          {myPurchages.map(row => (
             <TableRow
-              key={row.pr._id}
+              key={row._id}
               sx={{ '&:last-child td, &:last-child th': { border:1 } }}
             >
               <TableCell component="th" scope="row">
-                      <img width='100px' src={row.pr.img}/>
+              <img width='100px' src={row.pr?.img}/>
               </TableCell>
-              <TableCell align="right">{row.pr.titile}</TableCell>
+              <TableCell align="right">{row.pr?.titile}</TableCell>
               <TableCell align="right">{row.email}</TableCell>
               <TableCell align="right">{row.name}</TableCell>
               <TableCell align="right">{row._id}</TableCell>
-              <TableCell align="right">{row.pr.status}</TableCell>
+              <TableCell align="right">{row.pr?.status}</TableCell>
             </TableRow>
           ))}
         </TableBody>

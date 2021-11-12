@@ -32,6 +32,9 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddProduct from '../AddProduct/AddProduct';
 import useAuth from '../../../Hooks/useAuth';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
+import ManageAllOrder from '../ManageAllOrder/ManageAllOrder';
+import DeleteProduct from '../ManageProduct/DeleteProduct/DeleteProduct';
+import UpdateProduct from '../ManageProduct/UpdateProduct/UpdateProduct';
 
 
 
@@ -42,7 +45,7 @@ function DashBoard(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   //route macth
   let { path, url } = useRouteMatch();
-  const {admin}=useAuth()
+  const {admin,logOut}=useAuth()
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -69,9 +72,22 @@ function DashBoard(props) {
               
               <Link to={`${url}/addProduct`} style={{textDecoration:'none'}}>
                   <Button color='inherit'>Add Product</Button>
+            </Link>
+            
+            <Link to={`${url}/manageAllOrder`} style={{textDecoration:'none'}}>
+                  <Button color='inherit'>Manage All Orders</Button>
               </Link>
-            </>
-              }
+            <Link to={`${url}/deleteProduct`} style={{textDecoration:'none'}}>
+                  <Button color='inherit'>Delete Product</Button>
+              </Link>
+            <Link to={`${url}/updateProduct`} style={{textDecoration:'none'}}>
+                  <Button color='inherit'>Update Product</Button>
+              </Link>
+
+          </>}
+          
+            <Button onClick={logOut} color='inherit'>LogOut</Button>
+         
               
              
               </div>
@@ -180,6 +196,15 @@ function DashBoard(props) {
         </AdminRoute>
         <AdminRoute path={`${path}/addProduct`}>
          <AddProduct></AddProduct>
+        </AdminRoute>
+        <AdminRoute path={`${path}/manageAllOrder`}>
+         <ManageAllOrder></ManageAllOrder>
+        </AdminRoute>
+        <AdminRoute path={`${path}/deleteProduct`}>
+         <DeleteProduct></DeleteProduct>
+        </AdminRoute>
+        <AdminRoute path={`${path}/updateProduct`}>
+         <UpdateProduct></UpdateProduct>
         </AdminRoute>
       </Switch>
         

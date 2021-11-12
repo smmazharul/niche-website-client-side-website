@@ -41,6 +41,9 @@ const Navigation = () => {
             user?.email ?
             
                 <>
+                <NavLink to='/purchage' style={{textDecoration:'none'}} >
+                    <Button color="inherit" sx={{color:'white',}}>Purchage</Button>
+                </NavLink>
                 <NavLink to='/dashboard' style={{textDecoration:'none'}} >
                     <Button color="inherit" sx={{color:'white',}}>Dashboard</Button>
                 </NavLink>

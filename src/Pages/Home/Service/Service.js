@@ -9,7 +9,7 @@ import useAuth from '../../../Hooks/useAuth';
 
 const Service = (props) => {
     const { user } = useAuth();
-    const {displayName,email}=user
+    const {email}=user
     const { titile, description, img, time, price, _id } = props.service
     const service=props.service
     const handlePurchage = () => {
@@ -42,7 +42,7 @@ const Service = (props) => {
                         </Typography>
                         
                         <Typography variant="body2" color="text.white" sx={{color:'#fff'}}>
-                        {description.slice(0,150)}
+                        {description.slice(0,120)}
                          </Typography>
                     
                         <Typography variant="h5" color="text.white" sx={{color:'#fff'}} className='d-flex mb-3 justify-content-evenly'>

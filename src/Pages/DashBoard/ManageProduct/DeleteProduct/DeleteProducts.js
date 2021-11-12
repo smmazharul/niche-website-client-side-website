@@ -1,19 +1,19 @@
 import { Grid } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import { Link } from 'react-router-dom';
-import useAuth from '../../../Hooks/useAuth';
+import useAuth from '../../../../Hooks/useAuth';
 
-
-const Booking = (props) => {
+const DeleteProducts = (props) => {
     const { user } = useAuth();
+    const [services, setServices] = useState([])
     const {email}=user
-    const { titile, description, img, time, price, _id } = props.booking
-    const service=props.booking
-    const handlePurchage = () => {
+    const { titile, description, img, time, price, _id } = props.service
+    const service=props.service
+  /*   const handlePurchage = () => {
         const data = service
         data.email = `${email}`
         delete service._id;
@@ -25,12 +25,47 @@ const Booking = (props) => {
             body:JSON.stringify(data)
         })
         console.log(data);
-    }
+    } */
+    // const handleDelete=(id)=>{
+    //     console.log(id);
+    //     const confirmation = window.confirm("Are you sure to delete!!");
+    //     if (confirmation) {
+            
+    //     }
+    //     fetch(`http://localhost:5000/services/${id}`,{
+    //         method:"DELETE",
+    //     })
+    //    .then(res=>res.json())
+    //    .then(data=>console.log(data))
+    //    const remaining= services.filter(service=>service._id !==id)
+    //    setServices(remaining)
+    // }
 
-    
+    const handleDelete=(id)=>{
+        console.log(id);
+        const confirmation = window.confirm("Are you sure to delete!!");
+        if (confirmation) {
+          fetch(`http://localhost:5000/services/${id}`,{
+              method:"DELETE",
+          })
+         .then(res=>res.json())
+              .then(data => {
+                  console.log(data)
+                if (data.deletedCount) {
+                  const remaining= services.filter(service=>service._id !==id)
+                 setServices(remaining)
+                }
+                else{
+                  alert('Someting Wrong')
+                }
+              })
+         
+      }
+     }
+
+
     return (
-        <>
-         <Grid item xs={4} sm={4} md={4} className='mb-5' >
+        <Grid item xs={4} sm={4} md={4} className='mb-5' >
             <Card sx={{ minWidth: 275,  border: 0, boxShadow: 0  }} className='bg-dark'>
                  <CardMedia
                     component="img"
@@ -45,16 +80,16 @@ const Booking = (props) => {
                         </Typography>
                         
                         <Typography variant="body2" color="text.white" sx={{color:'#fff'}}>
-                        {description.slice(0,120)}
+                        {description.slice(0,150)}
                          </Typography>
                     
                         <Typography variant="h5" color="text.white" sx={{color:'#fff'}} className='d-flex mb-3 justify-content-evenly'>
                         <spam className='text-warning'>{time}days</spam> <span className='text-warning'>{price}$</span>
                          </Typography>
                         
-                        <Link to={`/purchage/${_id}`} >
-                           <button onClick={()=>handlePurchage(props.service)} className='fw-bold rounded '>Order Now -></button>
-                        </Link>
+                        
+                           <button onClick={()=>handleDelete(service._id)} className='fw-bold rounded '>Deleted</button>
+                        
 
                     
 
@@ -62,10 +97,7 @@ const Booking = (props) => {
                 </Card>
                             
         </Grid>
-            
-        
-        </>
     );
 };
 
-export default Booking;
+export default DeleteProducts;

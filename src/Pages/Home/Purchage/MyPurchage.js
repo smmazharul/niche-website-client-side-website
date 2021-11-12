@@ -3,10 +3,10 @@ import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {  Container, Typography } from '@mui/material';
 import { useForm } from "react-hook-form";
-import axios from 'axios'
+// import axios from 'axios'
 import { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
@@ -26,32 +26,39 @@ const MyPurchage = ({ pr,isDeleted,setIsDeleted,isconfirm,setIsconfirm }) => {
     // console.log(pr);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const {user,token}=useAuth()
-   
+    const { titile, description, img, time, price, _id } = pr
     const handleDelete=(id)=>{
         console.log(id);
-        fetch(`http://localhost:5000/DeleteOrder/${id}`,{
-            method:"DELETE",
-        })
-       .then(res=>res.json())
-            .then(data => {
-                console.log(data)
-                if (data.deletedCount) {
-                    alert('delete Successfully')
-                    setIsDeleted(true);
-                }
-                else{
-                    setIsDeleted(false)
-                }
+        const confirmation = window.confirm("Are you sure to delete!!");
+        if (confirmation) {
+            fetch(`http://localhost:5000/DeleteOrder/${id}`,{
+                method:"DELETE",
             })
+           .then(res=>res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount) {
+                        
+                        setIsDeleted(true)
+                    }
+                    else {
+                        setIsDeleted(false)
+                        // alert("Something went wrong!!");
+                    }
+                    
+                })
+           
+        }
+        }
        
-    }
+
 
 
     const onSubmit = data => {
         data.pr = pr;
         console.log(data);
         pr.status = 'pending'
-        console.log( purchages.status);
+         console.log( purchages.status);
         
         fetch('http://localhost:5000/orderConfirms',{
             method:'POST',
@@ -84,21 +91,21 @@ const MyPurchage = ({ pr,isDeleted,setIsDeleted,isconfirm,setIsconfirm }) => {
                     <CardMedia
                         component="img"
                         style={{ height:'250px', margin:"0 auto"}}
-                        image={pr.img}
+                        image={img}
                         alt="green iguana"
                         />
                     
                         <CardContent>
                             <Typography variant="h5" component="div" sx={{color:'orange'}}>
-                            {pr.titile}
+                            {titile}
                             </Typography>
                             
                             <Typography variant="body2" color="text.white" sx={{color:'#fff'}}>
-                            {pr.description.slice(0,150)}
+                            {description.slice(0,150)}
                             </Typography>
                         
                             <Typography variant="h5" color="text.white" sx={{color:'#fff'}} className='d-flex mb-3 justify-content-evenly'>
-                            <spam className='text-warning'>{pr.time}days</spam> <span className='text-warning'>{pr.price}$</span>
+                            <spam className='text-warning'>{time}days</spam> <span className='text-warning'>{price}$</span>
                             </Typography>
                                 
                             <Box>

@@ -22,7 +22,7 @@ const Login = () => {
        
     }
     return (
-        <Container>
+        <Container className='mt-2'>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                     <Typography sx={{ color: '#00e5ff'}} variant='body1' gutterBottom>Please Login</Typography>
@@ -64,8 +64,8 @@ const Login = () => {
                     {user?.email && <Alert severity="success">Congratulations You login successfully!</Alert>}
                     {authError && <Alert severity="error">{authError}</Alert>}
                 </Grid>
-                <Grid item xs={12} md={6}>
-                    <img src={loginImage} style={{width:'100%',}} />
+                <Grid item xs={12} md={6} >
+                    <img src={loginImage} style={{width:'100%',}} className='rounded' alt='login images'/>
                 </Grid>
                 
             </Grid>
