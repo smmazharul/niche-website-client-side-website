@@ -62,6 +62,9 @@ function DashBoard(props) {
               <Link to='/service' style={{textDecoration:'none'}}>
                   <Button color='inherit'>Products</Button>
                </Link>
+              <Link to='/payment' style={{textDecoration:'none'}}>
+                  <Button color='inherit'>Payment</Button>
+               </Link>
               <Link to={`${url}`} style={{textDecoration:'none'}}>
                   <Button color='inherit'>Order Items</Button>
               </Link>

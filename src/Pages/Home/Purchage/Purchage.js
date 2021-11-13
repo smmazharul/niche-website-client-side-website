@@ -27,7 +27,7 @@ const Purchage = ({ service }) => {
     
     return (
         <div className=''>
-            <Navigation></Navigation>
+           
             
             {
                 purchages?.map(pr => <MyPurchage

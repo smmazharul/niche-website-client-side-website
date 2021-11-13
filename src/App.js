@@ -18,6 +18,9 @@ import DashBoard from './Pages/DashBoard/DashBoard/DashBoard';
 import AddService from './Pages/DashBoard/AddService/AddService';
 import Purchage from './Pages/Home/Purchage/Purchage';
 import UpdateProduct from './Pages/DashBoard/ManageProduct/UpdateProduct/UpdateProduct';
+import Navigation from './Pages/Shared/Navigation/Navigation';
+import Payment from './Pages/DashBoard/Payment/Payment';
+import Footer from './Pages/Footer/Footer';
 
 
 
@@ -26,7 +29,8 @@ function App() {
     <div className="App">
 
       <AuthProvider>
-      <Router>
+        <Router>
+        <Navigation></Navigation>
         <Switch>
           <PrivateRoute path="/Service">
             <Service></Service>
@@ -34,6 +38,9 @@ function App() {
           <PrivateRoute path="/dashboard">
             <DashBoard></DashBoard>
           </PrivateRoute>
+          <Route path="/payment">
+            <Payment></Payment>
+          </Route>
           <Route path="/addservice">
             <AddService></AddService>
           </Route>
@@ -57,7 +64,8 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-        </Switch>
+          </Switch>
+          <Footer></Footer>
       </Router>
       </AuthProvider>
     </div>

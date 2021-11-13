@@ -89,7 +89,7 @@ const UpdateProduct = () => {
     }
     return (
         <div   >
-                <Navigation></Navigation>
+              
            
             <Container className='mt-5'>
                  
