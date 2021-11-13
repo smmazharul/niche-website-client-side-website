@@ -8,7 +8,7 @@ const Service = () => {
     return (
         <div>
             
-            <ServiceHeader date={date} setDate={setDate}></ServiceHeader>
+            {/* <ServiceHeader date={date} setDate={setDate}></ServiceHeader> */}
             <AvailableService date={date}></AvailableService>
         </div>
     );
