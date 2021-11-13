@@ -32,7 +32,7 @@ const AddService = () => {
             
             <form onSubmit={handleSubmit(onSubmit)}>
                 <input className='addSeervice' {...register("titile",  { required: true, maxLength: 50 } )}  placeholder='Titile'/>
-                <textarea className='addSeervice' {...register("description",  )} placeholder='description' />
+                <textarea className='addSeervice' {...register("description", { required: true, maxLength: 120, }  )} placeholder='description maxlength is 120 ' />
                 <input className='addSeervice' {...register("img", )}  placeholder='img url'/>
                 <input className='addSeervice' {...register("time", )}  placeholder='delivery time'/>
                 <input className='addSeervice' type="number" {...register("price", )}  placeholder='price'/>

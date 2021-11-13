@@ -45,7 +45,7 @@ const Booking = (props) => {
                         </Typography>
                         
                         <Typography variant="body2" color="text.white" sx={{color:'#fff'}}>
-                        {description.slice(0,120)}
+                        {description}
                          </Typography>
                     
                         <Typography variant="h5" color="text.white" sx={{color:'#fff'}} className='d-flex mb-3 justify-content-evenly'>
