@@ -1,120 +1,180 @@
+import { Card, CardContent, CardMedia, Container, Link, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Card } from 'react-bootstrap';
-
 import { useParams } from 'react-router';
-import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
-import Bg from '../../../../images/Login-page-car.jpg'
-import '../../AddService/AddService.css'
-const BannerBg = {
-    background: `url(${Bg})`,
-    height: "100%",
-    backgroundPosition:"center"
-    
-}
+import './UpdateProduct.css'
+import Navigation from '../../../Shared/Navigation/Navigation'
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 const UpdateProduct = () => {
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const [update,setUpdate]=useState({});
-    const {id}=useParams()
-
-    useEffect(()=>{
-        const url=`http://localhost:5000/services/${id}`;
+    const { id } = useParams()
+    const [singleProduct, setSingleProduct] = useState({})
+    // const { register, handleSubmit, reset} = useForm();
+    useEffect(() => {
+        const url = `http://localhost:5000/services/${id}`;
         fetch(url)
-        .then(res=>res.json())
-        .then(data=>setUpdate(data))
-        },[])
-        const {name, img, description, price, duretion}=update
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setSingleProduct(data)
+        })
+    }, [])
+    
 
-        const handleNameChange = e => {
-            const updatedName = e.target.value;
-            console.log(updatedName);
-            const updatedPackage = { name: updatedName, description:description, price:price, duretion:duretion, img:img  };
-            setUpdate(updatedPackage);
-        }
+    const { titile, description, time, price, img } = singleProduct;
+    const handleTitileChange = e => {
+        const udateTitile = e.target.value;
+        console.log(e.target.value);
+        const UpdateProduct = { titile: udateTitile , description:singleProduct.description };
+        setSingleProduct(UpdateProduct)
+    }
+    
+    const handleDescriptionChange = e => {
+        const udateDescription = e.target.value;
+        // const UpdateProduct = { ...singleProduct };
+        // UpdateProduct.description = udateDescription;
+        const UpdateProduct = { titile: singleProduct.titile, description: udateDescription };
+        setSingleProduct(UpdateProduct)
 
-        const handledescriptionChange = e => {
-            const updatedDiscription = e.target.value;
-            const updatedPackage = { name: name, description:updatedDiscription, price:price, duretion:duretion, img:img  };
-            setUpdate(updatedPackage);
-        }
-        const handlePriceChange = e => {
-            const updatedprice = e.target.value;
-            const updatedPackage = { name: name, description:description, price:updatedprice, duretion:duretion, img:img  };
-            setUpdate(updatedPackage);
-        }
-        const handleDuretionChange = e => {
-            const updatedDuretion = e.target.value;
-            const updatedPackage = { name: name, description:description, price:price, duretion:updatedDuretion, img:img  };
-            setUpdate(updatedPackage);
-        }
-        const handleUrlChange = e => {
-            const updatedImg = e.target.value;
-            const updatedPackage = { name: name, description:description, price:price, duretion:duretion, img:updatedImg  };
-            setUpdate(updatedPackage);
-        }
+    }
+    const handleImageChange = e => {
+        const udateImages = e.target.value;
+        console.log(e.target.value);
+        // const UpdateProduct = { ...singleProduct };
+        // UpdateProduct.description = udateDescription;
+        const UpdateProduct = { titile: singleProduct.titile, description: singleProduct.description, img:udateImages };
+        setSingleProduct(UpdateProduct)
 
-        const handleUpdateUser  = e => {
-            const url = `/${id}`;
-            fetch(url, {
-                method: 'PUT',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(update)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.modifiedCount > 0) {
-                        alert('Update Successful');
-                        setUpdate({});
-                        e.target.reset();
-                    }
-                })
+    }
+    const handleTimeChange = e => {
+        const udateTime = e.target.value;
+        console.log(e.target.value);
+        // const UpdateProduct = { ...singleProduct };
+        // UpdateProduct.description = udateDescription;
+        const UpdateProduct = { titile:titile, description: description, img:img, time:udateTime  };
+        setSingleProduct(UpdateProduct)
 
-            e.preventDefault();
-        }
+    }
+    
+    const handlePriceChange = e => {
+        const udatePrice = e.target.value;
+        console.log(e.target.value);
+        // const UpdateProduct = { ...singleProduct };
+        // UpdateProduct.price = udatePrice;
+        const UpdateProduct = { titile:titile, description: description, img:img, time:time, price:udatePrice  };
+        setSingleProduct(UpdateProduct)
 
-
+    }
+    
+  
+   
+    const onSubmit = e => {
+        const url = `http://localhost:5000/services/${id}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(singleProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    alert('Product Updated')
+                    setSingleProduct({})
+                }
+        })
+        e.preventDefault()
+    }
     return (
-        <div className='container mt-3 '>
-                <div>
-                {/* <Card className='updt-crd' style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={img} />
-                <Card.Body>
-                    <Card.Title>{name}</Card.Title>
-                    <Card.Text className='text-dark fw-normal'>
-                        {description}
-                    </Card.Text>
-                </Card.Body>
-                </Card> */}
-                </div>
-                <div>
-
-
-       
-        <div className="add-seervice p-5" style={BannerBg}>
-            <h2 className='text-warning '>UpDate Product</h2>
-            
-            <form onSubmit={handleSubmit(handleUpdateUser)}>
-                <input className='addSeervice' {...register("titile",  { required: true, maxLength: 50 } )}  placeholder='Titile'/>
-                <textarea className='addSeervice' {...register("description",  )} placeholder='description' />
-                <input className='addSeervice' {...register("img", )}  placeholder='img url'/>
-                <input className='addSeervice' {...register("time", )}  placeholder='delivery time'/>
-                <input className='addSeervice' type="number" {...register("price", )}  placeholder='price'/>
-                <input  className='bg-warning text-dark fw-bold addSeervice' type="submit" value='Add Service' />
-            </form>
-
-            <Link to='/dashboard' >
-                <button  className='bg-danger text-dark addSeervice' >Dashboard</button>
-            </Link>
-        </div>
+        <div   >
+                <Navigation></Navigation>
+           
+            <Container className='mt-5'>
+                 
+            <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
         
+                <Card sx={{ minWidth: 275,  border: 0, boxShadow: 0  }} className='bg-dark'>
+                    <CardMedia
+                        component="img"
+                        style={{ height:'250px', margin:"0 auto"}}
+                        image={img}
+                        alt="green iguana"
+                        />
+                    
+                        <CardContent>
+                            <Typography variant="h5" component="div" sx={{color:'orange'}}>
+                            {titile}
+                            </Typography>
+                            
+                            <Typography variant="body2" color="text.white" sx={{color:'#fff'}}>
+                            {description}
+                            </Typography>
+                        
+                            <Typography variant="h5" color="text.white" sx={{color:'#fff'}} className='d-flex mb-3 justify-content-evenly'>
+                            <spam className='text-warning'>{time}days</spam> <span className='text-warning'>{price}$</span>
+                            </Typography>
+                                
+                           
+                         
+                     
 
-                </div>
-                
-                
-                
-                
+                    
+
+                    </CardContent>
+                </Card>
+            </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <Grid item xs={12} md={6} className='d-flex ' >
+                        
+            <div className="add-seervice p-5" >
+                <h5 className='text-white '>PLEASE COMFIRM YOUR ORDER</h5>
+                    <form onSubmit={onSubmit}  >
+
+                        <input className='addSeervice' type="text" onChange={handleTitileChange} value={ singleProduct.titile || ''} placeholder='Titile' />
+                        <input className='addSeervice' type="text" onChange={handleDescriptionChange} value={ singleProduct.description || ''} placeholder='Description'/>
+                        <input className='addSeervice' type="text" onChange={handleImageChange} value={ singleProduct.img || ''} placeholder='Img url' />
+                        <input className='addSeervice' type="text" onChange={handleTimeChange} value={ singleProduct.time || ''}  placeholder='time'/>
+                        <input className='addSeervice' type="text" onChange={handlePriceChange} value={singleProduct.price || ''}  placeholder='price'/>
+                        <input className='addSeervice' type="submit" value='Update Product' />
+                       
+                    </form>
+                    
+                    </div>
+                    </Grid>
+                    
+                    
+
+                    </Grid>
+
+            </Container>
+               
+
+           
+            {/* <p><small>{id}</small></p> */}
+           
+            
         </div>
     );
 };

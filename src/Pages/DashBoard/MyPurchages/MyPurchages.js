@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Button } from '@mui/material';
 const MyPurchages = () => {
     const {user}=useAuth()
     const [myPurchages, setMyPurchages] = useState([])
@@ -14,7 +15,36 @@ const MyPurchages = () => {
       fetch(`http://localhost:5000/mypurchages?email=${user.email}`)
         .then(res => res.json())
         .then(data => setMyPurchages(data))
-    },[])
+    }, [])
+  
+  
+    const handleDelete=(id)=>{
+      console.log(id);
+      const confirmation = window.confirm("Are you sure to delete!!");
+      if (confirmation) {
+        fetch(`http://localhost:5000/DeleteAllOrder/${id}`,{
+            method:"DELETE",
+        })
+       .then(res=>res.json())
+            .then(data => {
+                console.log(data)
+              if (data.deletedCount) {
+                   
+                window.confirm('delete Successfully', id)
+                    
+               
+                const remaining = myPurchages.filter(order => order._id !== id)
+                setMyPurchages(remaining)
+              }
+              else{
+                alert('Someting Wrong')
+              }
+            })
+       
+    }
+   }
+  
+  
     return (
         <div>
             <h2>Purchage Items {myPurchages.length}</h2>
@@ -29,6 +59,7 @@ const MyPurchages = () => {
             <TableCell align="right">Customer Name</TableCell>
             <TableCell align="right">Order ID</TableCell>
             <TableCell align="right">Order Status</TableCell>
+            <TableCell align="right">Order Cancel</TableCell>
           </TableRow>
         </TableHead>
         <TableBody >
@@ -45,6 +76,7 @@ const MyPurchages = () => {
               <TableCell align="right">{row.name}</TableCell>
               <TableCell align="right">{row._id}</TableCell>
               <TableCell align="right">{row.pr?.status}</TableCell>
+              <TableCell align="right"><Button onClick={() => { handleDelete(row._id) } } > Cancel</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>

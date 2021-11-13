@@ -17,6 +17,8 @@ import Gelary from './Pages/Home/Gelary/Gelary';
 import DashBoard from './Pages/DashBoard/DashBoard/DashBoard';
 import AddService from './Pages/DashBoard/AddService/AddService';
 import Purchage from './Pages/Home/Purchage/Purchage';
+import UpdateProduct from './Pages/DashBoard/ManageProduct/UpdateProduct/UpdateProduct';
+
 
 
 function App() {
@@ -38,11 +40,15 @@ function App() {
           <PrivateRoute path="/purchage">
             <Purchage></Purchage>
           </PrivateRoute>
+          
           <Route path="/home">
             <Home />
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/deleteProduct/updateProduct/:id">
+            <UpdateProduct></UpdateProduct>
           </Route>
           
           <Route path="/register">

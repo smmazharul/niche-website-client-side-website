@@ -13,33 +13,7 @@ const DeleteProducts = (props) => {
     const {email}=user
     const { titile, description, img, time, price, _id } = props.service
     const service=props.service
-  /*   const handlePurchage = () => {
-        const data = service
-        data.email = `${email}`
-        delete service._id;
-        fetch(`http://localhost:5000/purchage`, {
-            method: 'post',
-            headers: {
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(data)
-        })
-        console.log(data);
-    } */
-    // const handleDelete=(id)=>{
-    //     console.log(id);
-    //     const confirmation = window.confirm("Are you sure to delete!!");
-    //     if (confirmation) {
-            
-    //     }
-    //     fetch(`http://localhost:5000/services/${id}`,{
-    //         method:"DELETE",
-    //     })
-    //    .then(res=>res.json())
-    //    .then(data=>console.log(data))
-    //    const remaining= services.filter(service=>service._id !==id)
-    //    setServices(remaining)
-    // }
+  
 
     const handleDelete=(id)=>{
         console.log(id);
@@ -51,7 +25,7 @@ const DeleteProducts = (props) => {
          .then(res=>res.json())
               .then(data => {
                   console.log(data)
-                if (data.deletedCount) {
+                if (data.deletedCount >0) {
                   const remaining= services.filter(service=>service._id !==id)
                  setServices(remaining)
                 }
@@ -80,7 +54,7 @@ const DeleteProducts = (props) => {
                         </Typography>
                         
                         <Typography variant="body2" color="text.white" sx={{color:'#fff'}}>
-                        {description.slice(0,150)}
+                        {description}
                          </Typography>
                     
                         <Typography variant="h5" color="text.white" sx={{color:'#fff'}} className='d-flex mb-3 justify-content-evenly'>
@@ -89,7 +63,10 @@ const DeleteProducts = (props) => {
                         
                         
                            <button onClick={()=>handleDelete(service._id)} className='fw-bold rounded '>Deleted</button>
-                        
+                        <Link to={`/deleteProduct/updateProduct/${service._id}`}>
+                        <button className='fw-bold rounded '>Update</button>
+                        </Link>
+                                    
 
                     
 

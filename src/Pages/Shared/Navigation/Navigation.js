@@ -47,6 +47,7 @@ const Navigation = () => {
                 <NavLink to='/dashboard' style={{textDecoration:'none'}} >
                     <Button color="inherit" sx={{color:'white',}}>Dashboard</Button>
                 </NavLink>
+               
                 <Button onClick={logOut} color="inherit" sx={{color:'white',}}>LogOut</Button>
        
                 </>

@@ -34,7 +34,7 @@ import useAuth from '../../../Hooks/useAuth';
 import AdminRoute from '../../Login/AdminRoute/AdminRoute';
 import ManageAllOrder from '../ManageAllOrder/ManageAllOrder';
 import DeleteProduct from '../ManageProduct/DeleteProduct/DeleteProduct';
-import UpdateProduct from '../ManageProduct/UpdateProduct/UpdateProduct';
+import ProductUpdate from './ProductUpdate/ProductUpdate';
 
 
 
@@ -80,9 +80,8 @@ function DashBoard(props) {
             <Link to={`${url}/deleteProduct`} style={{textDecoration:'none'}}>
                   <Button color='inherit'>Delete Product</Button>
               </Link>
-            <Link to={`${url}/updateProduct`} style={{textDecoration:'none'}}>
-                  <Button color='inherit'>Update Product</Button>
-              </Link>
+            
+            
 
           </>}
           
@@ -203,9 +202,8 @@ function DashBoard(props) {
         <AdminRoute path={`${path}/deleteProduct`}>
          <DeleteProduct></DeleteProduct>
         </AdminRoute>
-        <AdminRoute path={`${path}/updateProduct`}>
-         <UpdateProduct></UpdateProduct>
-        </AdminRoute>
+       
+      
       </Switch>
         
       </Box>
