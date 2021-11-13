@@ -14,7 +14,7 @@ const ManageAllOrder = () => {
    
     const [allMyPurchages, setAllMyPurchages] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/allmypurchages`)
+        fetch(`https://boiling-refuge-39527.herokuapp.com/allmypurchages`)
             .then(res => res.json())
         .then(data=>setAllMyPurchages(data))
     }, [])
@@ -28,7 +28,7 @@ const ManageAllOrder = () => {
       console.log(id);
       const confirmation = window.confirm("Are you sure to delete!!");
       if (confirmation) {
-        fetch(`http://localhost:5000/DeleteAllOrder/${id}`,{
+        fetch(`https://boiling-refuge-39527.herokuapp.com/DeleteAllOrder/${id}`,{
             method:"DELETE",
         })
        .then(res=>res.json())
@@ -54,7 +54,7 @@ const ManageAllOrder = () => {
   const handleOrderStatus = (id) => {
     const confirmation = window.confirm('Are you sure we want to confirm  this order')
     if (confirmation) {
-      fetch(`http://localhost:5000/allmypurchages/${id}`,{
+      fetch(`https://boiling-refuge-39527.herokuapp.com/allmypurchages/${id}`,{
         method:'PUT',
       })
         .then(res => res.json())

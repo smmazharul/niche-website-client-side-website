@@ -31,7 +31,7 @@ const MyPurchage = ({ pr,isDeleted,setIsDeleted,isconfirm,setIsconfirm }) => {
         console.log(id);
         const confirmation = window.confirm("Are you sure to delete!!");
         if (confirmation) {
-            fetch(`http://localhost:5000/DeleteOrder/${id}`,{
+            fetch(`https://boiling-refuge-39527.herokuapp.com/DeleteOrder/${id}`,{
                 method:"DELETE",
             })
            .then(res=>res.json())
@@ -60,7 +60,7 @@ const MyPurchage = ({ pr,isDeleted,setIsDeleted,isconfirm,setIsconfirm }) => {
         pr.status = 'pending'
          console.log( purchages.status);
         
-        fetch('http://localhost:5000/orderConfirms',{
+        fetch('https://boiling-refuge-39527.herokuapp.com/orderConfirms',{
             method:'POST',
             headers: {
                 'authorization':`Bearer ${token}`,

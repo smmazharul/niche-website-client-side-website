@@ -10,7 +10,7 @@ import { Grid, Rating } from '@mui/material';
 const Usereviews = () => {
     const [ reviews, setReviews ] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/reviewCollactions`)
+        fetch(`https://boiling-refuge-39527.herokuapp.com/reviewCollactions`)
             .then(res => res.json())
         .then(data=>setReviews(data))
     },[])

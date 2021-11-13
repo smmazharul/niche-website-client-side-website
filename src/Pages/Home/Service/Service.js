@@ -16,7 +16,7 @@ const Service = (props) => {
         const data = service
         data.email = `${email}`
         delete service._id;
-        fetch(`http://localhost:5000/purchage`, {
+        fetch(`https://boiling-refuge-39527.herokuapp.com/purchage`, {
             method: 'post',
             headers: {
                 'content-type':'application/json'

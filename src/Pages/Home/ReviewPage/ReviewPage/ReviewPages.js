@@ -15,7 +15,7 @@ const ReviewPages = () => {
     const { register, handleSubmit, reset} = useForm();
     const onSubmit = data => {
         console.log(data)
-        axios.post('http://localhost:5000/reviewCollactions',data)
+        axios.post('https://boiling-refuge-39527.herokuapp.com/reviewCollactions',data)
         .then(res=>{
             console.log(res)
             if(res.data.insertedId){

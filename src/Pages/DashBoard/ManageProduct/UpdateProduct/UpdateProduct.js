@@ -11,7 +11,7 @@ const UpdateProduct = () => {
     const [singleProduct, setSingleProduct] = useState({})
     // const { register, handleSubmit, reset} = useForm();
     useEffect(() => {
-        const url = `http://localhost:5000/services/${id}`;
+        const url = `https://boiling-refuge-39527.herokuapp.com/services/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => {
@@ -69,7 +69,7 @@ const UpdateProduct = () => {
   
    
     const onSubmit = e => {
-        const url = `http://localhost:5000/services/${id}`;
+        const url = `https://boiling-refuge-39527.herokuapp.com/services/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

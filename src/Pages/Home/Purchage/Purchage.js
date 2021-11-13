@@ -14,7 +14,7 @@ const Purchage = ({ service }) => {
     const [isDeleted,setIsDeleted]=useState(null)
     const [isconfirm]=useState(null)
     useEffect(()=>{
-        fetch(`http://localhost:5000/purchage?email=${user.email}`)
+        fetch(`https://boiling-refuge-39527.herokuapp.com/purchage?email=${user.email}`)
         .then(res=>res.json())
 
 

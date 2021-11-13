@@ -19,7 +19,7 @@ const DeleteProducts = (props) => {
         console.log(id);
         const confirmation = window.confirm("Are you sure to delete!!");
         if (confirmation) {
-          fetch(`http://localhost:5000/services/${id}`,{
+          fetch(`https://boiling-refuge-39527.herokuapp.com/services/${id}`,{
               method:"DELETE",
           })
          .then(res=>res.json())

@@ -12,7 +12,7 @@ const MyPurchages = () => {
     const {user}=useAuth()
     const [myPurchages, setMyPurchages] = useState([])
     useEffect(() => {
-      fetch(`http://localhost:5000/mypurchages?email=${user.email}`)
+      fetch(`https://boiling-refuge-39527.herokuapp.com/mypurchages?email=${user.email}`)
         .then(res => res.json())
         .then(data => setMyPurchages(data))
     }, [])
@@ -22,7 +22,7 @@ const MyPurchages = () => {
       console.log(id);
       const confirmation = window.confirm("Are you sure to delete!!");
       if (confirmation) {
-        fetch(`http://localhost:5000/DeleteAllOrder/${id}`,{
+        fetch(`https://boiling-refuge-39527.herokuapp.com/DeleteAllOrder/${id}`,{
             method:"DELETE",
         })
        .then(res=>res.json())
