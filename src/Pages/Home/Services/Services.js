@@ -25,7 +25,7 @@ const Services = () => {
                     OUR SERVICES
                  </Typography >
                 <Typography variant="h4" component="div"  sx={{mt:2,mb:8, fontWeight:'500'}}>
-                    Services We Provide
+                    Product We Provide
                  </Typography>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                   
